@@ -8,7 +8,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 
 @Path("/sms")
-public class SmsResource {
+public class SmsEndpoints {
     
 
     @GET
