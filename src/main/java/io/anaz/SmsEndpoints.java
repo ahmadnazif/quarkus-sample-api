@@ -2,36 +2,53 @@ package io.anaz;
 
 import java.util.ArrayList;
 
-import io.quarkus.arc.lookup.LookupIfProperty.List;
+import io.anaz.models.PostResponse;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
 
 @Path("/sms")
 public class SmsEndpoints {
-    
 
-    @GET
     @Path("count-all")
-    public int countAll(){
+    @GET
+    public int countAll() {
         return 0;
     }
 
-
+    @Path("/get")
     @GET
-    public String get(){
-        return "/";
+    public String get(@QueryParam("id") String id){
+        return id;
     }
 
-    @GET
     @Path("/list-all")
-    public ArrayList<String> listAll(){
+    @GET
+    public ArrayList<String> listAll() {
         return new ArrayList<>();
     }
 
-    @POST
     @Path("/add")
-    public String add(){
-        return "Added";
+    @POST
+    public PostResponse add() {
+        var pr = new PostResponse();
+        pr.isSuccess = true;
+        pr.message = "OK";
+        return pr;
+    }
+
+    @Path("edit")
+    @PUT
+    public String edit(){
+        return "";
+    }
+
+    @Path("delete")
+    @DELETE
+    public String delete(){
+        return "";
     }
 }
