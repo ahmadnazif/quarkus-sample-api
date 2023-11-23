@@ -18,7 +18,7 @@ public class SmsEndpoints {
     @Inject
     Db db;
 
-    @Path("count-all")
+    @Path("/count-all")
     @GET
     public int countAll() {
         return db.countAll();
@@ -43,7 +43,7 @@ public class SmsEndpoints {
         return resp;
     }
 
-    @Path("delete")
+    @Path("/delete")
     @DELETE
     public PostResponse delete(@QueryParam("id") String id) {
         return db.deleteData(id);
