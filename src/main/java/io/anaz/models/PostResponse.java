@@ -1,6 +1,11 @@
 package io.anaz.models;
 
 public class PostResponse {
-    public boolean isSuccess;
-    public String message;
+    protected boolean isSuccess;
+    protected String message;
+
+    public PostResponse(boolean isSuccess, String message){
+        this.isSuccess = isSuccess;
+        this.message = message;
+    }
 }
