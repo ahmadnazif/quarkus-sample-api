@@ -10,4 +10,5 @@ No external library is used. Instead, a singleton reference is created each time
 ## Running sample using VS Code
 - Clone this repo
 - Open the sample using
+- Rebuild cache: `./gradlew --build-cache`
 - Run: `./gradlew quarkusDev`
