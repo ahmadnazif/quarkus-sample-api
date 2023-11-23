@@ -54,7 +54,7 @@ public class Db {
             } else {
                 map.remove(data.smsId, sms);
                 map.put(sms.smsId, new Sms(sms.smsId, sms.from, sms.to, sms.text, sms.createdTimeUtc));
-                return new PostResponse(true, "SMS '" + data.smsId + "'' updated");
+                return new PostResponse(true, "SMS '" + data.smsId + "' updated");
             }
 
         } catch (Exception e) {

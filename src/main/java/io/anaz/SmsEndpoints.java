@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 
@@ -47,8 +48,11 @@ public class SmsEndpoints {
     }
 
     @Path("/edit")
-    @POST
+    @PUT
     public PostResponse edit(SmsBase sms) {
+        if (sms.smsId == null)
+            return new PostResponse(false, "SmsID must be supplied");
+
         var resp = db.editData(sms);
         return resp;
     }
