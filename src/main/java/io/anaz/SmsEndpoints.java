@@ -44,14 +44,8 @@ public class SmsEndpoints {
     @Path("/add")
     @POST
     public PostResponse add(SmsBase sms) {
-        var resp = db.addData(sms);
+        var resp = db.addData(sms);        
         return resp;
-    }
-
-    @Path("edit")
-    @PUT
-    public String edit() {
-        return "";
     }
 
     @Path("delete")

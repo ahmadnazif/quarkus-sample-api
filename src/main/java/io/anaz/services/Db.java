@@ -27,7 +27,7 @@ public class Db {
             var smsId = UUID.randomUUID().toString();
             var sms = new Sms(smsId, data.from, data.to, data.text);
             list.add(sms);
-            return new PostResponse(true, "SMS" + smsId + "added");
+            return new PostResponse(true, "SMS '" + smsId + "'' added");
         } catch (Exception e) {
             return new PostResponse(false, e.getMessage());
         }
@@ -37,10 +37,13 @@ public class Db {
     public PostResponse deleteData(String smsId) {
         try {
             var succ = list.removeIf(x -> x.smsId == smsId);
-            return new PostResponse(succ, "");
+            if (succ)
+                return new PostResponse(succ, "SMS '" + smsId + "' removed");
+            else
+                return new PostResponse(false, "Can't remove");
 
         } catch (Exception e) {
-            return new PostResponse(false, e.getMessage());
+            return new PostResponse(false, "Exception: " + e.getMessage());
         }
     }
 }
