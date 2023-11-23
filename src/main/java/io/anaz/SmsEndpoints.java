@@ -26,7 +26,7 @@ public class SmsEndpoints {
     @Path("count-all")
     @GET
     public int countAll() {
-        return 0;
+        return db.countAll();
     }
 
     @Path("/get")

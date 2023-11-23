@@ -18,6 +18,10 @@ public class Db {
         this.list = new ArrayList<>();
     }
 
+    public int countAll(){
+        return list.size();
+    }
+
     public List<Sms> listAll() {
         return list;
     }
