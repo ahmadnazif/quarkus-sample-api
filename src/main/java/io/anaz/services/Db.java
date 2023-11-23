@@ -6,11 +6,14 @@ import java.util.UUID;
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
-import jakarta.enterprise.context.ApplicationScoped;
+//import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Singleton;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@ApplicationScoped
+//@ApplicationScoped
+@Singleton
 public class Db {
 
     // public List<Sms> list;
