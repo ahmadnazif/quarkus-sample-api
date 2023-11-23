@@ -1,5 +1,8 @@
 package io.anaz.models;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class PostResponse {
     protected boolean isSuccess;
     protected String message;
