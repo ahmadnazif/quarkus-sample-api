@@ -1,21 +1,16 @@
 package io.anaz;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
 import io.anaz.services.Db;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
-import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
 
 @Path("/sms")
 public class SmsEndpoints {
@@ -31,8 +26,8 @@ public class SmsEndpoints {
 
     @Path("/get")
     @GET
-    public String get(@QueryParam("id") String id) {
-        return id;
+    public Sms get(@QueryParam("id") String id) {
+        return db.get(id);
     }
 
     @Path("/list-all")

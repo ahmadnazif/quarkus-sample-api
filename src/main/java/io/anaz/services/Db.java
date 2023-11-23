@@ -27,6 +27,10 @@ public class Db {
         return map.size();
     }
 
+    public Sms get(String id){
+        return map.get(id);
+    }
+
     public List<Sms> listAll() {
         return new ArrayList<Sms>(map.values());
     }
