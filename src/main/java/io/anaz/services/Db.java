@@ -2,7 +2,6 @@ package io.anaz.services;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
@@ -28,7 +27,7 @@ public class Db {
         return map.size();
     }
 
-    public Sms get(String id){
+    public Sms get(String id) {
         return map.get(id);
     }
 
@@ -38,14 +37,29 @@ public class Db {
 
     public PostResponse addData(SmsBase data) {
         try {
-            var smsId = UUID.randomUUID().toString();
-            var sms = new Sms(smsId, data.from, data.to, data.text);
-            map.put(smsId, sms);
-            return new PostResponse(true, "SMS '" + smsId + "'' added");
+            var sms = new Sms(data.smsId, data.from, data.to, data.text);
+            map.put(data.smsId, sms);
+            return new PostResponse(true, "SMS '" + data.smsId + "'' added");
         } catch (Exception e) {
             return new PostResponse(false, e.getMessage());
         }
 
+    }
+
+    public PostResponse editData(SmsBase data) {
+        try {
+            var sms = map.get(data.smsId);
+            if (sms == null) {
+                return addData(data);
+            } else {
+                map.remove(data.smsId, sms);
+                map.put(sms.smsId, new Sms(sms.smsId, sms.from, sms.to, sms.text, sms.createdTimeUtc));
+                return new PostResponse(true, "SMS '" + data.smsId + "'' updated");
+            }
+
+        } catch (Exception e) {
+            return new PostResponse(false, e.getMessage());
+        }
     }
 
     public PostResponse deleteData(String smsId) {

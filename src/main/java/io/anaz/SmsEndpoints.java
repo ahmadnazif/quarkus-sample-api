@@ -1,6 +1,8 @@
 package io.anaz;
 
 import java.util.List;
+import java.util.UUID;
+
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
@@ -39,7 +41,15 @@ public class SmsEndpoints {
     @Path("/add")
     @POST
     public PostResponse add(SmsBase sms) {
-        var resp = db.addData(sms);        
+        sms.smsId = UUID.randomUUID().toString();
+        var resp = db.addData(sms);
+        return resp;
+    }
+
+    @Path("/edit")
+    @POST
+    public PostResponse edit(SmsBase sms) {
+        var resp = db.editData(sms);
         return resp;
     }
 
