@@ -3,13 +3,11 @@ package io.anaz.services;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 @ApplicationScoped
