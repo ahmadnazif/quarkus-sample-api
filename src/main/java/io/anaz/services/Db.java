@@ -5,21 +5,17 @@ import java.util.Map;
 import io.anaz.models.PostResponse;
 import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
-//import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//@ApplicationScoped
 @Singleton
 public class Db {
 
-    // public List<Sms> list;
     public Map<String, Sms> map;
 
     public Db() {
-        // this.list = new ArrayList<>();
         map = new HashMap<>();
     }
 
@@ -39,11 +35,10 @@ public class Db {
         try {
             var sms = new Sms(data.smsId, data.from, data.to, data.text);
             map.put(data.smsId, sms);
-            return new PostResponse(true, "SMS '" + data.smsId + "'' added");
+            return new PostResponse(true, "SMS '" + data.smsId + "' added");
         } catch (Exception e) {
             return new PostResponse(false, e.getMessage());
         }
-
     }
 
     public PostResponse editData(SmsBase data) {
