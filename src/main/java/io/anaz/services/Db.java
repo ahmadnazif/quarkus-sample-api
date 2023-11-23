@@ -1,6 +1,7 @@
 package io.anaz.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import io.anaz.models.PostResponse;
@@ -8,29 +9,33 @@ import io.anaz.models.Sms;
 import io.anaz.models.SmsBase;
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 
 @ApplicationScoped
 public class Db {
 
-    public List<Sms> list;
+    // public List<Sms> list;
+    public Map<String, Sms> map;
 
     public Db() {
-        this.list = new ArrayList<>();
+        // this.list = new ArrayList<>();
+        map = new HashMap<>();
     }
 
-    public int countAll(){
-        return list.size();
+    public int countAll() {
+        return map.size();
     }
 
     public List<Sms> listAll() {
-        return list;
+        return new ArrayList<Sms>(map.values());
     }
 
     public PostResponse addData(SmsBase data) {
         try {
             var smsId = UUID.randomUUID().toString();
             var sms = new Sms(smsId, data.from, data.to, data.text);
-            list.add(sms);
+            map.put(smsId, sms);
             return new PostResponse(true, "SMS '" + smsId + "'' added");
         } catch (Exception e) {
             return new PostResponse(false, e.getMessage());
@@ -40,12 +45,14 @@ public class Db {
 
     public PostResponse deleteData(String smsId) {
         try {
-            var succ = list.removeIf(x -> x.smsId == smsId);
-            if (succ)
-                return new PostResponse(succ, "SMS '" + smsId + "' removed");
-            else
-                return new PostResponse(false, "Can't remove");
 
+            var sms = map.get(smsId);
+            if (sms == null)
+                return new PostResponse(false, "SMS '" + smsId + "' not found");
+            else {
+                var succ = map.remove(smsId, sms);
+                return new PostResponse(succ, "SMS '" + smsId + "' removed");
+            }
         } catch (Exception e) {
             return new PostResponse(false, "Exception: " + e.getMessage());
         }
